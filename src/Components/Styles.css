@@ -1,0 +1,28 @@
+.TextFieldClass{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.RegisterButton{
+  background-color: #94d62c;
+  margin-top: 31%;
+  padding: 1rem;
+  margin-right: 16%;
+  color: #fff;
+  margin-left: 16%;
+
+}
+.backToLogin{
+  color: #94d62c;
+  margin-top: 15rem;
+  position: absolute;
+  text-align: center;
+  margin-left: 9rem;
+    text-decoration: underline;
+}
+.ForgotPassword{
+  float: left;
+  margin-left: 10%;
+  margin-top: 1rem;
+  color: #94d62c;
+  font-weight: 100;
+}
