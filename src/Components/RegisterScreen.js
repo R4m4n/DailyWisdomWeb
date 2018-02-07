@@ -5,14 +5,21 @@ import { FormControl, FormHelperText } from 'material-ui/Form';
 import Visibility from 'material-ui-icons/Visibility';
 import VisibilityOff from 'material-ui-icons/VisibilityOff';
 import IconButton from 'material-ui/IconButton';
-import './Styles.css'
+import './Styles.css';
+import axios from 'axios';
+
 
 class RegisterScreen extends Component {
   constructor(props){
     super(props);
     this.state={
-      name:'',
+      user:{
+      username:'',
+      email:'',
+      password:'',
+    },
        showPassword: false,
+       message:{},
     }
   }
   handleMouseDownPassword = event => {
@@ -21,6 +28,41 @@ class RegisterScreen extends Component {
   handleClickShowPasssword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
+
+  handleRegisterClick=()=>{
+
+    let {user} = this.state;
+
+     let formData = new FormData();
+
+     formData.append('email',user.email);
+     formData.append('password',user.password);
+     formData.append('username',user.username);
+     formData.append('device_type',1);
+     formData.append('device_token',123456);
+
+     const data=JSON.stringify(formData);
+
+     axios.post('http://dailywisdoms.com/backend/app/api/register', formData)
+     .then((response)=> {
+        this.setState({
+          message:response.data
+        });
+        console.log("response   ",response.data);
+      })
+      .catch(function (error) {
+        console.log("error   ",error);
+      });
+  }
+
+  handleChange = (key, event) => {
+    let {user} = this.state;
+    user[key] = event.target.value;
+
+    this.setState({ user });
+  }
+
+
   render() {
     return (
       <div >
@@ -37,6 +79,7 @@ class RegisterScreen extends Component {
            className="TextFieldClass"
            fullWidth
            margin="normal"
+           onChange={this.handleChange.bind(this, 'username')}
            style={{marginLeft:"10%",marginRight:"10%",width:"80%"}}
          />
          <TextField
@@ -50,6 +93,7 @@ class RegisterScreen extends Component {
           className="TextFieldClass"
           fullWidth
           margin="normal"
+          onChange={this.handleChange.bind(this, 'email')}
           style={{marginLeft:"10%",marginRight:"10%",width:"80%"}}
         />
 
@@ -65,6 +109,7 @@ class RegisterScreen extends Component {
            placeholder="Enter password"
            fullWidth
            margin="normal"
+           onChange={this.handleChange.bind(this, 'password')}
            style={{marginLeft:"10%",width:"70%", float:"left"}}
          />
          <IconButton
@@ -75,11 +120,11 @@ class RegisterScreen extends Component {
            {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
          </IconButton>
 
-         <div className="RegisterButton">
+         <div className="RegisterButton" onClick={this.handleRegisterClick}>
           Register
          </div>
 
-         <div className="backToLogin">
+         <div className="backToLogin" onClick={()=>this.props.screenValue(2)}>
            Back to Login
          </div>
       </div>

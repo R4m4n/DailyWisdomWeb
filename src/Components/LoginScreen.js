@@ -70,8 +70,8 @@ class LoginScreen extends Component {
           Login
          </div>
 
-         <div className="backToLogin" style={{textDecoration:"none"}}>
-           <span style={{color:"#000"}}>Don't Have Account?</span> Register
+         <div className="RegisterGreen" style={{textDecoration:"none"}} >
+           <span style={{color:"#000"}}>Don't Have Account?</span> <span onClick={()=>this.props.screenValue(1)}>Register</span>
          </div>
       </div>
     );
