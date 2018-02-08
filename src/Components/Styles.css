@@ -20,6 +20,7 @@ cursor: pointer;
   text-align: center;
   margin-left: 12rem;
     text-decoration: underline;
+    cursor: pointer;
 }
 .ForgotPassword{
   float: left;
@@ -27,6 +28,7 @@ cursor: pointer;
   margin-top: 1rem;
   color: #94d62c;
   font-weight: 100;
+  cursor: pointer;
 }
 .slickItems{
   background-color: #3311aa;
@@ -41,4 +43,40 @@ cursor: pointer;
   text-align: center;
   margin-left: 9rem;
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.Invalidity{
+  color: #ff0000b5;
+    text-align: left;
+    margin-left: 10%;
+
+}
+.forgotPasswordBanner{
+  color: #94d62c;
+
+  position: absolute;
+  text-align: center;
+  margin-left: 8.6rem;
+  font-size: 20px;
+}
+.ForgotPasswordScreen{
+    margin-top: 15rem;
+}
+.forgotPasswordDes{
+    padding-top: 4rem;
+}
+
+.ForgotPasswordTextField{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+.ResetButton{
+  background-color: #94d62c;
+  margin-top: 20%;
+  padding: 1rem;
+  margin-right: 16%;
+  color: #fff;
+  margin-left: 16%;
+cursor: pointer;
 }
