@@ -8,6 +8,14 @@ class PlayScreen extends Component {
 
 console.log(e);
 }
+
+
+goToHistory=()=>{
+  this.props.history.push('/history');
+}
+
+
+
   render() {
     var settings = {
   centerPadding: '0rem',
@@ -23,7 +31,7 @@ console.log(e);
     return (
       <div>
         <div style={{height:"3rem"}}>
-          <i class="material-icons" style={{width:"2rem", float:"left", color:"#99a3b5", marginTop:"10px", cursor:"pointer"}}>format_list_bulleted</i>
+          <i class="material-icons" style={{width:"2rem", float:"left", color:"#99a3b5", marginTop:"10px", cursor:"pointer"}} onClick={this.goToHistory}>format_list_bulleted</i>
           <Typography style={{color:"#99a3b5",width:"80%",float:"left",marginLeft:"5%",fontSize:"1.5rem", marginTop:"10px"}}>
              Daily Wisdom
            </Typography>

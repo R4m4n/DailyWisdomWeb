@@ -30,6 +30,7 @@ class LoginScreen extends Component {
        isemail:true,
      },
      message:{},
+     Login:false
     }
   }
   handleMouseDownPassword = event => {
@@ -74,12 +75,16 @@ this.setState({ validate });
         this.setState({
           message:response.data
         });
-        console.log("response   ",response.data);
+        console.log("response   ",response.data, "message   ",this.state.message.status);
+        if (this.state.message.status===200) {
+          this.props.history.push('/play_screen');
+        }
       })
       .catch(function (error) {
         console.log("error   ",error);
       });
   }
+
 }
 
 handleChange = (key, event) => {
@@ -161,6 +166,9 @@ handleChange = (key, event) => {
           Login
          </div>
 
+      {  <div>
+          Invalid Credentials! Please try again!
+        </div>}
     {  //    <div className="RegisterGreen" style={{textDecoration:"none"}} >
       //      <span style={{color:"#000"}}>Don't Have Account?</span> <span onClick={()=>this.props.screenValue(1)}>Register</span>
       //    </div>
