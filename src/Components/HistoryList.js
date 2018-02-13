@@ -39,7 +39,7 @@ componentWillMount(){
 render(){
     return (
       <div>
-        <div style={{height:"3rem"}}>
+        <div style={{height:"3rem", marginBottom:"1rem"}}>
             <img src={require("../Images/header_back_icon.png")} style={{height:"1.5rem", float:"left", cursor:"pointer",  marginTop:"15px",marginLeft:"0.5rem"}} onClick={this.goToHome} />
             <Typography style={{color:"#99a3b5",width:"80%",float:"left",marginLeft:"5%",fontSize:"1.5rem", marginTop:"10px"}}>
                Manage History
@@ -47,10 +47,16 @@ render(){
 
           <img src={require("../Images/settings.png")} style={{width:"2rem", float:"right", cursor:"pointer"}} />
         </div>
-        {!this.state.message===undefined &&(
-          (this.message.status===200) && this.state.message.response.map((item,key)=>
+        {console.log(this.state.message.status)}
+        { this.state.message.response && ( this.state.message.response.map((item,key)=>
             <div key={key}>
-              <img src={require("../Images/recording_icon.png")} style={{height:"1.5rem", float:"left",marginLeft:"0.5rem"}}/>
+              <div className="listClass">
+                <img src={require("../Images/recording_icon.png")} style={{height:"1.5rem", float:"left",marginLeft:"0.5rem"}}/>
+                <div className="middleDiv"> 
+                    <div className="historyTitle">{item.title}</div>
+                    <div className="historyTime">{item.notification_time}</div>
+                  </div>
+              </div>
             </div>
           )
         )

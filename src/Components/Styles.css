@@ -81,3 +81,20 @@ cursor: pointer;
   margin-left: 16%;
   cursor: pointer;
 }
+
+.listClass{
+height:4rem;
+}
+.middleDiv{
+  float:left;
+  margin-left: 1rem;
+}
+.historyTitle{
+  float:left;
+  margin-left: 1rem;
+  width: 100%;
+  text-align: left;
+}
+.historyTime{
+  margin-left: 1rem;
+}

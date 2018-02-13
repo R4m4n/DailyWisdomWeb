@@ -30,7 +30,8 @@ class LoginScreen extends Component {
        isemail:true,
      },
      message:{},
-     Login:false
+     Login:false,
+     isError:false
     }
   }
   handleMouseDownPassword = event => {
@@ -80,15 +81,17 @@ this.setState({ validate });
           this.props.history.push('/play_screen');
         }
       })
-      .catch(function (error) {
-        console.log("error   ",error);
+      .catch(error => {
+       this.setState({
+       isError:true
+       });
       });
   }
 
 }
 
 handleChange = (key, event) => {
-  let {user,validate} = this.state;
+  let {user,validate} = this.state; 
   user[key] = event.target.value;
 
 
@@ -117,65 +120,65 @@ handleChange = (key, event) => {
           <div style={{marginTop:"1rem"}}>LOGIN</div>
 
 
-         <TextField
-          id="full-width"
-          label="Email"
-          type="email"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          placeholder="Enter email"
-          className="TextFieldClass"
-          fullWidth
-          margin="normal"
-          onChange={this.handleChange.bind(this, 'email')}
-          style={{marginLeft:"10%",marginRight:"10%",width:"80%",marginTop:"8rem"}}
-        />
-        {!this.state.validate['email'] &&   <Errormessage message="Email cannot be empty"/>}
-        {!this.state.validate['isemail'] &&   <Errormessage message="Please enter proper email address"/>}
+              <TextField
+                id="full-width"
+                label="Email"
+                type="email"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                placeholder="Enter email"
+                className="TextFieldClass"
+                fullWidth
+                margin="normal"
+                onChange={this.handleChange.bind(this, 'email')}
+                style={{marginLeft:"10%",marginRight:"10%",width:"80%",marginTop:"8rem"}}
+              />
+              {!this.state.validate['email'] &&   <Errormessage message="Email cannot be empty"/>}
+              {!this.state.validate['isemail'] &&   <Errormessage message="Please enter proper email address"/>}
 
-       <TextField
-           id="adornment-password"
-           type={this.state.showPassword ? 'text' : 'password'}
-           value={this.state.password}
-           label="Password"
-           InputLabelProps={{
-             shrink: true,
-           }}
-           placeholder="Enter password"
-           fullWidth
-           margin="normal"
-           onChange={this.handleChange.bind(this, 'password')}
-           style={{marginLeft:"10%",width:"70%", float:"left"}}
-         />
-         <IconButton
-           onClick={this.handleClickShowPasssword}
-           onMouseDown={this.handleMouseDownPassword}
-            style={{ float:"right",marginTop:"20px",marginRight:"8%"}}
-         >
-           {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-         </IconButton>
+            <TextField
+                id="adornment-password"
+                type={this.state.showPassword ? 'text' : 'password'}
+                value={this.state.password}
+                label="Password"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                placeholder="Enter password"
+                fullWidth
+                margin="normal"
+                onChange={this.handleChange.bind(this, 'password')}
+                style={{marginLeft:"10%",width:"70%", float:"left"}}
+              />
+              <IconButton
+                onClick={this.handleClickShowPasssword}
+                onMouseDown={this.handleMouseDownPassword}
+                  style={{ float:"right",marginTop:"20px",marginRight:"8%"}}
+              >
+                {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
 
-           {!this.state.validate['password'] &&   <Errormessage message="Password cannot be empty" />}
-        <Link to="/forgot_password_screen" style={{textDecoration:"none"}} >
-         <div className="ForgotPassword">
-            Forgot Password
-         </div>
-         </Link>
-         <div className="RegisterButton" onClick={this.handleLoginClick}>
-          Login
-         </div>
+                {!this.state.validate['password'] &&   <Errormessage message="Password cannot be empty" />}
+              <Link to="/forgot_password_screen" style={{textDecoration:"none"}} >
+              <div className="ForgotPassword">
+                  Forgot Password
+              </div>
+              </Link>
+              <div className="RegisterButton" onClick={this.handleLoginClick}>
+                Login
+              </div>
 
-      {  <div>
-          Invalid Credentials! Please try again!
-        </div>}
-    {  //    <div className="RegisterGreen" style={{textDecoration:"none"}} >
-      //      <span style={{color:"#000"}}>Don't Have Account?</span> <span onClick={()=>this.props.screenValue(1)}>Register</span>
-      //    </div>
-}
- <Link to="/register_screen" style={{textDecoration:"none"}} ><div className="RegisterGreen" style={{textDecoration:"none"}} >
-       <span style={{color:"#000"}}>Don't Have Account?</span> <span>Register</span>
-      </div></Link>
+            {this.state.isError &&  <div style={{marginTop:"1rem", color:"#ff0000b5" }}>
+                Invalid Credentials! Please try again!
+            </div>}
+          {  //    <div className="RegisterGreen" style={{textDecoration:"none"}} >
+            //      <span style={{color:"#000"}}>Don't Have Account?</span> <span onClick={()=>this.props.screenValue(1)}>Register</span>
+            //    </div>
+          }
+      <Link to="/register_screen" style={{textDecoration:"none"}} ><div className="RegisterGreen" style={{textDecoration:"none"}} >
+            <span style={{color:"#000"}}>Don't Have Account?</span> <span>Register</span>
+            </div></Link>
        </div>
     );
   }
