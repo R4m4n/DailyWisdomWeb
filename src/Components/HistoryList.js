@@ -52,10 +52,11 @@ render(){
             <div key={key}>
               <div className="listClass">
                 <img src={require("../Images/recording_icon.png")} style={{height:"1.5rem", float:"left",marginLeft:"0.5rem"}}/>
-                <div className="middleDiv"> 
+                <div className="middleDiv">
                     <div className="historyTitle">{item.title}</div>
                     <div className="historyTime">{item.notification_time}</div>
                   </div>
+                  <img className="deleteIcon" src={require("../Images/delete_icon.png")} />
               </div>
             </div>
           )

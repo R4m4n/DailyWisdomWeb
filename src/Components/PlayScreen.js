@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import Slider from 'react-slick';
 import Icon from 'material-ui/Icon';
 import Typography from 'material-ui/Typography';
+import Sound from 'react-sound';
+import axios from 'axios';
 
 class PlayScreen extends Component {
-  nextClick=(e)=>{
+  constructor(props){
+    super(props)
+    this.state={
+      listData:[],
+      message:{},
+      index:0,
+    }
+  }
 
+  nextClick=(e)=>{
+this.setState({index:e})
 console.log(e);
 }
 
@@ -14,7 +25,22 @@ goToHistory=()=>{
   this.props.history.push('/history');
 }
 
+componentWillMount(){
+  let formData = new FormData();
 
+
+  formData.append('access_token','29c2c3328c097fb8e5bbf4b8da16b059');
+  axios.post('http://dailywisdoms.com/backend/app/api/notification/history', formData)
+  .then((response)=> {
+     this.setState({
+       message:response.data
+     });
+     console.log("response   ",response.data);
+   })
+   .catch(function (error) {
+     console.log("error   ",error);
+   });
+}
 
   render() {
     var settings = {
@@ -39,13 +65,20 @@ goToHistory=()=>{
           <img src={require("../Images/settings.png")} style={{width:"2rem", float:"right", cursor:"pointer"}} />
         </div>
         <Slider {...settings}>
-         <div className="slickItems" ><h3>1</h3></div>
-         <div className="slickItems" ><h3>2</h3></div>
-         <div className="slickItems" ><h3>3</h3></div>
-         <div className="slickItems" ><h3>4</h3></div>
-         <div className="slickItems" ><h3>5</h3></div>
-         <div className="slickItems" ><h3>6</h3></div>
+
+         { this.state.message.response && ( this.state.message.response.map((item,key)=>
+             <div className="slickItems" ><h3>{item.title}</h3>
+
+              </div>
+           )
+         )
+         }
        </Slider>
+      {this.state.message.response && <Sound
+          url={this.state.message.response[this.state.index].audio_path}
+          playStatus={Sound.status.PLAYING}
+        />}
+
       </div>
     );
   }

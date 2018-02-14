@@ -98,3 +98,8 @@ height:4rem;
 .historyTime{
   margin-left: 1rem;
 }
+.deleteIcon{
+  height: 1.5rem;
+  float: right;
+  margin-right: 1rem;
+}
