@@ -34,6 +34,7 @@ class RegisterScreen extends Component {
 
        showPassword: false,
        message:{},
+       registered:false,
 
     }
   }
@@ -83,9 +84,13 @@ this.setState({ validate });
           message:response.data
         });
         console.log("response   ",response.data);
+          this.props.history.push('/');
       })
-      .catch(function (error) {
+      .catch(error=> {
         console.log("error   ",error);
+        this.setState({
+          registered:true,
+        })
       });
   }
 }
@@ -101,7 +106,10 @@ this.setState({ validate });
     if (!is.empty(user['email']))
         validate['email']=true;
 
-    this.setState({ user });
+    this.setState({
+        user,
+        registered:false,
+     });
   }
 
   render() {
@@ -176,7 +184,9 @@ this.setState({ validate });
          <div className="RegisterButton" onClick={this.handleRegisterClick}>
           Register
          </div>
-
+        {this.state.registered &&  <div style={{marginTop:"1rem", color:"#ff0000b5" }}>
+          User is already registered.
+          </div>}
 
 
        <Link to="/"> <div className="backToLogin">

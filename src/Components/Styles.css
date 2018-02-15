@@ -84,10 +84,12 @@ cursor: pointer;
 
 .listClass{
 height:4rem;
+
 }
 .middleDiv{
   float:left;
   margin-left: 1rem;
+  cursor: pointer;
 }
 .historyTitle{
   float:left;
@@ -102,4 +104,5 @@ height:4rem;
   height: 1.5rem;
   float: right;
   margin-right: 1rem;
+  cursor: pointer;
 }
