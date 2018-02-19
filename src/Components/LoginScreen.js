@@ -11,6 +11,12 @@ import axios from 'axios';
 import {
   Link
 } from 'react-router-dom';
+import {
+  activateGeod,
+  closeGeod,
+} from '../Redux/Action/index';
+import { connect } from 'react-redux';
+
 
 
 class LoginScreen extends Component {
@@ -91,7 +97,7 @@ this.setState({ validate });
 }
 
 handleChange = (key, event) => {
-  let {user,validate} = this.state; 
+  let {user,validate} = this.state;
   user[key] = event.target.value;
 
 
@@ -119,7 +125,13 @@ handleChange = (key, event) => {
         <div className="RegisterLogoDiv"><img src={require('../Images/DailyWisdomLogo.png')} style={{height:"7rem",marginTop:"15%"}}/></div>
           <div style={{marginTop:"1rem"}}>LOGIN</div>
 
-
+{this.props.geod.title ?
+          <button onClick={this.props.closeGeod}>
+            Exit Geod
+          </button> :
+          <button onClick={() => this.props.activateGeod({ title: 'I am a geo dude!' })}>
+            Click Me!
+          </button>}
               <TextField
                 id="full-width"
                 label="Email"
@@ -177,11 +189,26 @@ handleChange = (key, event) => {
             //    </div>
           }
       <Link to="/register_screen" style={{textDecoration:"none"}} ><div className="RegisterGreen" style={{textDecoration:"none"}} >
-            <span style={{color:"#000"}}>Don't Have Account?</span> <span>Register</span>
+            <span style={{color:"#000"}}>Dont Have Account?</span> <span>Register</span>
             </div></Link>
        </div>
     );
   }
 }
 
-export default LoginScreen;
+
+const mapStateToProps = (state, ownProps) => ({
+  geod: state.geod,
+});
+
+const mapDispatchToProps = {
+  activateGeod,
+  closeGeod,
+};
+
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginScreen);
+
+export default AppContainer;

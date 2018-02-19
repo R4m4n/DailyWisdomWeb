@@ -39,25 +39,25 @@ componentWillMount(){
   onListClick=()=>{
     this.props.history.push('/play_screen');
   }
-  onClickDelete=(id,item)=>{
-    let formData = new FormData();
-
-
-    formData.append('access_token','29c2c3328c097fb8e5bbf4b8da16b059');
-    formData.append('notification_id',{id});
-    axios.post('http://dailywisdoms.com/backend/app/api/notification/history/delete', formData)
-    .then((response)=> {
-       this.setState({
-         message:response.data
-       });
-       console.log("response   ",response.data);
-         this.state.message.splice(this.state.message.indexOf(item),1);
-     })
-     .catch(function (error) {
-       console.log("error   ",error);
-     });
-
-  }
+  // onClickDelete=(id,item)=>{
+  //   let formData = new FormData();
+  //
+  //
+  //   formData.append('access_token','29c2c3328c097fb8e5bbf4b8da16b059');
+  //   formData.append('notification_id',{id});
+  //   axios.post('http://dailywisdoms.com/backend/app/api/notification/history/delete', formData)
+  //   .then((response)=> {
+  //      this.setState({
+  //        message:response.data
+  //      });
+  //      console.log("response   ",response.data);
+  //        this.state.message.splice(this.state.message.indexOf(item),1);
+  //    })
+  //    .catch(function (error) {
+  //      console.log("error   ",error);
+  //    });
+  //
+  // }
 
 render(){
     return (

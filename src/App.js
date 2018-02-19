@@ -6,6 +6,7 @@ import LoginScreen from './Components/LoginScreen';
 import PlayScreen from './Components/PlayScreen';
 import ForgotPasswordScreen from './Components/ForgotPasswordScreen';
 import HistoryList from './Components/HistoryList';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -28,9 +29,16 @@ changeScreenValue=(value)=>{
   })
 }
 
+
+    clickAction=()=>{
+
+    }
+
+
+
   render() {
     return (
-      <div className="App">
+     <div className="App">
         <div className="mainContainer">
         {  // {this.state.screen===1 &&  <RegisterScreen screenValue={this.changeScreenValue}/>}
           // {this.state.screen===2 &&  <LoginScreen screenValue={this.changeScreenValue}/>}
@@ -49,6 +57,8 @@ changeScreenValue=(value)=>{
 
 
           </div>
+
+
       </div>
     );
   }
